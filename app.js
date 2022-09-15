@@ -40,6 +40,13 @@ async function freelaWebscrap() {
     var arrayLinkJob = [];
     var arrayTimeJob = [];
     var arrayTitleJob = [];
+    var blacklist = []
+
+    var fs = require('fs');
+    var array = fs.readFileSync('blacklist.txt').toString().split(",");
+    for(i in array) {
+        blacklist.push(array[i])
+    }
 
     var t = 0;
     while (t < 1) {
@@ -47,7 +54,7 @@ async function freelaWebscrap() {
       let page = await browser.newPage();
       let page2 = await browser.newPage();
 
-      page.goto("https://www.workana.com/jobs?category=it-programming&language=pt");
+      page.goto("https://www.workana.com/jobs?category=it-programming&has_few_bids=1&language=pt&subcategory=web-development%2Cwordpress-1%2Cothers-5");
       await delay(10000)
 
       pageData = await page.evaluate(() => document.querySelector('*').outerHTML);
@@ -99,14 +106,16 @@ async function freelaWebscrap() {
 
           var titleFilter = titleJob[i].textContent
           var descFilter = descJob[i].textContent
-          var url =  linkJob[i].href          
+          var url =  linkJob[i].href   
+          
+          titleFilter = titleFilter.toLowerCase()
+      
+          var filter = blacklist.some(t => titleFilter.includes(t));
          
-          if(titleFilter.includes("delphi") === false || titleFilter.includes("android") === false || titleFilter.includes("página de vendas") === false || titleFilter.includes("aplicativo ") === false || titleFilter.includes("power bi") === false || titleFilter.includes("extensão chrome") 
-          === false || titleFilter.includes("e-commerce") === false || titleFilter.includes("React") === false || titleFilter.includes("nuvemshop") === false || titleFilter.includes("instagram") === false || titleFilter.includes("aviator") 
-          === false || titleFilter.includes("ios") === false || titleFilter.includes("facebook")  === false || titleFilter.includes("excel") === false || titleFilter.includes("ads") === false || titleFilter.includes("bet356") 
-          ){
+          if(filter == false){
           cmd.run('start www.workana.com' + url);
           }
+
                     
          }
       }
