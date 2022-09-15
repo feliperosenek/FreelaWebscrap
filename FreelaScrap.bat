@@ -1,3 +1,3 @@
-start cmd.exe /c node app.js
+start cmd.exe /c node freelaTelegram.js
 
 
