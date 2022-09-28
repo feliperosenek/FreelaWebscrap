@@ -51,6 +51,9 @@ async function freelaWebscrap() {
       page.goto("https://www.workana.com/jobs?category=it-programming&has_few_bids=1&language=pt&subcategory=web-development%2Cwordpress-1%2Cothers-5");
       await delay(10000)
 
+      bot.telegram.sendMessage(5760605862,"Iniciando FreelaWebscrapper")
+      console.log("Iniciando FreelaWebscrapper")
+
       pageData = await page.evaluate(() => document.querySelector('*').outerHTML);
       dom = new JSDOM(pageData);
 
@@ -70,6 +73,8 @@ async function freelaWebscrap() {
             var hour = hora+":"+minuto;    
      
       for (var i = 0; i < titleJob.length; i++) {
+
+        console.log("Procurando por novos jobs")
         
         timeJobV = timeJob[i].title;
         timeJobV = timeJobV.split("de");
@@ -107,6 +112,7 @@ async function freelaWebscrap() {
           var filter = whitelist.some(t => titleFilter.includes(t));
          
           if(filter == true){
+            console.log("Novo JOB: " + titleJob[i].textContent)
             bot.telegram.sendMessage(5760605862,url)
           }
 
