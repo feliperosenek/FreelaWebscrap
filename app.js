@@ -11,6 +11,8 @@ const cors = require('cors');
 const morgan = require('morgan');
 const fs = require('fs');
 const { ifError } = require('assert');
+const { Telegraf } = require('telegraf');
+
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 async function freelaWebscrap() {
@@ -24,15 +26,7 @@ async function freelaWebscrap() {
       headless: true,
     };
 
-    const optionsHook = {
-      hostname: "937bb71b3cf5cf99e2b37c0985e9a62a.m.pipedream.net",
-      port: 443,
-      path: "/",
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
+    const bot = new Telegraf("5748468540:AAGiLUhCu2ESADda6qbk9_eW6kSGcTWSivM");
 
     let browser = await puppeteer.launch(options);
     let newJob = 0;
@@ -40,12 +34,12 @@ async function freelaWebscrap() {
     var arrayLinkJob = [];
     var arrayTimeJob = [];
     var arrayTitleJob = [];
-    var blacklist = []
+    var whitelist = []
 
     var fs = require('fs');
-    var array = fs.readFileSync('blacklist.txt').toString().split(",");
+    var array = fs.readFileSync('whitelist.txt').toString().split(",");
     for(i in array) {
-        blacklist.push(array[i])
+      whitelist.push(array[i])
     }
 
     var t = 0;
@@ -56,6 +50,9 @@ async function freelaWebscrap() {
 
       page.goto("https://www.workana.com/jobs?category=it-programming&has_few_bids=1&language=pt&subcategory=web-development%2Cwordpress-1%2Cothers-5");
       await delay(10000)
+
+      bot.telegram.sendMessage(5760605862,"Iniciando FreelaWebscrapper")
+      console.log("Iniciando FreelaWebscrapper")
 
       pageData = await page.evaluate(() => document.querySelector('*').outerHTML);
       dom = new JSDOM(pageData);
@@ -73,9 +70,11 @@ async function freelaWebscrap() {
             if(hora <=9){hora="0"+hora}
             if(minuto <=9){minuto="0"+minuto}
             if(dia <=9){dia="0"+dia}
-            var hour = hora+":"+minuto;    
+            var hour = hora+":"+minuto; 
+            
+            console.log("Procurando por novos jobs")
      
-      for (var i = 0; i < titleJob.length; i++) {
+      for (var i = 0; i < titleJob.length; i++) {    
         
         timeJobV = timeJob[i].title;
         timeJobV = timeJobV.split("de");
@@ -106,14 +105,15 @@ async function freelaWebscrap() {
 
           var titleFilter = titleJob[i].textContent
           var descFilter = descJob[i].textContent
-          var url =  linkJob[i].href   
+          var url =  "https://www.workana.com/"+linkJob[i].href   
           
           titleFilter = titleFilter.toLowerCase()
       
-          var filter = blacklist.some(t => titleFilter.includes(t));
+          var filter = whitelist.some(t => titleFilter.includes(t));
          
-          if(filter == false){
-          cmd.run('start www.workana.com' + url);
+          if(filter == true){
+            console.log("Novo JOB: " + titleJob[i].textContent)
+            bot.telegram.sendMessage(5760605862,url)
           }
 
                     

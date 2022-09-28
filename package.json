@@ -11,5 +11,8 @@
     "puppeteer": "^15.3.0",
     "selenium-webdriver": "^4.3.0",
     "telegraf": "^4.9.2"
+  },
+  "scripts": {
+    "start": "node app.js"
   }
 }
