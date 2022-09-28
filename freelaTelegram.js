@@ -70,11 +70,11 @@ async function freelaWebscrap() {
             if(hora <=9){hora="0"+hora}
             if(minuto <=9){minuto="0"+minuto}
             if(dia <=9){dia="0"+dia}
-            var hour = hora+":"+minuto;    
+            var hour = hora+":"+minuto; 
+            
+            console.log("Procurando por novos jobs")
      
-      for (var i = 0; i < titleJob.length; i++) {
-
-        console.log("Procurando por novos jobs")
+      for (var i = 0; i < titleJob.length; i++) {    
         
         timeJobV = timeJob[i].title;
         timeJobV = timeJobV.split("de");
