@@ -12,16 +12,17 @@ const morgan = require('morgan');
 const fs = require('fs');
 const { ifError } = require('assert');
 const { Telegraf } = require('telegraf');
-
+const bot = new Telegraf("5748468540:AAGiLUhCu2ESADda6qbk9_eW6kSGcTWSivM");
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 async function freelaWebscrap() {
 
   try {
 
+
     bot.telegram.sendMessage(5760605862,"Iniciando FreelaWebscrapper")
     console.log("Iniciando FreelaWebscrapper")
-    
+
     let options = {
       defaultViewport: {
         width: 1366,
@@ -29,8 +30,6 @@ async function freelaWebscrap() {
       },
       headless: true,
     };
-
-    const bot = new Telegraf("5748468540:AAGiLUhCu2ESADda6qbk9_eW6kSGcTWSivM");
 
     let browser = await puppeteer.launch(options);
     var whitelist = []
