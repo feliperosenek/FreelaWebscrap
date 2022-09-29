@@ -29,6 +29,7 @@ async function freelaWebscrap() {
         height: 768,
       },
       headless: true,
+      args: ['--no-sandbox']
     };
 
     let browser = await puppeteer.launch(options);
