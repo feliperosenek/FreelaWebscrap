@@ -18,6 +18,10 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 async function freelaWebscrap() {
 
   try {
+
+    bot.telegram.sendMessage(5760605862,"Iniciando FreelaWebscrapper")
+    console.log("Iniciando FreelaWebscrapper")
+    
     let options = {
       defaultViewport: {
         width: 1366,
@@ -29,11 +33,6 @@ async function freelaWebscrap() {
     const bot = new Telegraf("5748468540:AAGiLUhCu2ESADda6qbk9_eW6kSGcTWSivM");
 
     let browser = await puppeteer.launch(options);
-    let newJob = 0;
-    var arrayDescJob = [];
-    var arrayLinkJob = [];
-    var arrayTimeJob = [];
-    var arrayTitleJob = [];
     var whitelist = []
 
     var fs = require('fs');
@@ -43,6 +42,7 @@ async function freelaWebscrap() {
     }
 
     var t = 0;
+
     while (t < 1) {
 
       let page = await browser.newPage();
@@ -51,9 +51,7 @@ async function freelaWebscrap() {
       page.goto("https://www.workana.com/jobs?category=it-programming&has_few_bids=1&language=pt&subcategory=web-development%2Cwordpress-1%2Cothers-5");
       await delay(10000)
 
-      bot.telegram.sendMessage(5760605862,"Iniciando FreelaWebscrapper")
-      console.log("Iniciando FreelaWebscrapper")
-
+      
       pageData = await page.evaluate(() => document.querySelector('*').outerHTML);
       dom = new JSDOM(pageData);
 
@@ -98,13 +96,8 @@ async function freelaWebscrap() {
         if(parseInt(jobTimeDay) == parseInt(dia) && parseInt(calcM) < 15){
           if(parseInt(calcM) < 0){calcM = 0;}
       
-          arrayTitleJob.push(titleJob[i].textContent);
-          arrayTimeJob.push(calcM);
-          arrayDescJob.push(descJob[i].textContent);
-          arrayLinkJob.push(linkJob[i].href)
 
           var titleFilter = titleJob[i].textContent
-          var descFilter = descJob[i].textContent
           var url =  "https://www.workana.com/"+linkJob[i].href   
           
           titleFilter = titleFilter.toLowerCase()
@@ -115,11 +108,15 @@ async function freelaWebscrap() {
             console.log("Novo JOB: " + titleJob[i].textContent)
             bot.telegram.sendMessage(5760605862,url)
           }
-
-                    
+        
          }
       }
-   
+      
+      url = "";
+      titleFilter = "";
+      titleJob = []
+      timeJob = []
+      linkJob = []
       
       page.close();
       page2.close();
