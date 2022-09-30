@@ -117,6 +117,14 @@ async function freelaWebscrap() {
       titleJob = []
       timeJob = []
       linkJob = []
+      timeJobV = ""
+      jobTimeDay = ""
+      jobTimeHour = ""
+      jobTimeH = ""
+      jobTimeM = ""
+      calcH = ""
+      calcHour = ""
+      calcM = ""
       
       page.close();
       page2.close();
