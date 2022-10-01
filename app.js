@@ -60,6 +60,8 @@ async function freelaWebscrap() {
       descJob = dom.window.document.querySelectorAll(".html-desc.project-details");
       linkJob = dom.window.document.querySelectorAll(".h3.project-title > a");
 
+      
+
             var timestamp = new Date();
             var dia = timestamp.getDate();
             var hora = timestamp.getHours()
@@ -72,8 +74,7 @@ async function freelaWebscrap() {
             
             console.log("Procurando por novos jobs")
      
-      for (var i = 0; i < titleJob.length; i++) {    
-        
+      for (var i = 0; i < titleJob.length; i++) {       
         timeJobV = timeJob[i].title;
         timeJobV = timeJobV.split("de");
         jobTimeDay = timeJobV[0];
@@ -93,12 +94,12 @@ async function freelaWebscrap() {
         calcM = 60 - parseInt(jobTimeM) + parseInt(calcH[1]);         
         }
 
-        if(parseInt(jobTimeDay) == parseInt(dia) && parseInt(calcM) < 15){
+        if(parseInt(jobTimeDay) == parseInt(dia) && parseInt(calcM) < 15 && parseInt(calcHour) > 0){
           if(parseInt(calcM) < 0){calcM = 0;}
       
 
           var titleFilter = titleJob[i].textContent
-          var url =  "https://www.workana.com/"+linkJob[i].href   
+          var url =  "https://www.workana.com"+linkJob[i].href   
           
           titleFilter = titleFilter.toLowerCase()
       
@@ -108,7 +109,6 @@ async function freelaWebscrap() {
             console.log("Novo JOB: " + titleJob[i].textContent)
             bot.telegram.sendMessage(5760605862,url)
           }
-        
          }
       }
       
