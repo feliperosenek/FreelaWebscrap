@@ -61,6 +61,7 @@ async function freelaWebscrap() {
       linkJob = dom.window.document.querySelectorAll(".h3.project-title > a");
 
       
+    bot.telegram.sendMessage(5760605862,"Abriu o puppeteer")
 
             var timestamp = new Date();
             var dia = timestamp.getDate();
@@ -93,11 +94,23 @@ async function freelaWebscrap() {
         if(calcHour == "-1"){
         calcM = 60 - parseInt(jobTimeM) + parseInt(calcH[1]);         
         }
+        console.log("--------")
+       console.log("calcm = "+calcM);
+       console.log("calch = "+calcH);
+       console.log("calch = "+calcHour);
+       console.log("jobTimeDay = "+jobTimeDay);
+       console.log("Dia = "+dia);
+        console.log("--------")
 
-        if(parseInt(jobTimeDay) == parseInt(dia) && parseInt(calcM) < 15 && parseInt(calcHour) > 0){
+        if(parseInt(jobTimeDay) == parseInt(dia) && parseInt(calcM) < 15 ){
           if(parseInt(calcM) < 0){calcM = 0;}
-      
-
+          console.log("*****")
+          console.log("calcm = "+calcM);
+          console.log("calch = "+calcH);
+          console.log("calch = "+calcHour);
+          console.log("jobTimeDay = "+jobTimeDay);
+          console.log("Dia = "+dia);
+          console.log("*****")
           var titleFilter = titleJob[i].textContent
           var url =  "https://www.workana.com"+linkJob[i].href   
           
