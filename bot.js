@@ -68,13 +68,15 @@ var pup = async () => {
             if(dia <=9){dia="0"+dia}
             var hour = hora+":"+minuto; 
             
-            console.log(jobTimeHour)
+            
      
       for (var i = 0; i < titleJob.length; i++) {       
         timeJobV = timeJob[i].title;
+        console.log(timeJobV)
         timeJobV = timeJobV.split("de");
         jobTimeDay = timeJobV[0];
         jobTimeHour =  timeJobV[2];
+       
         jobTimeHour = jobTimeHour.split(" ")
 
         jobTimeHour = jobTimeHour[2].split(":");
