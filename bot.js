@@ -41,10 +41,11 @@ var pup = async () => {
 
       let page = await browser.newPage();
       let page2 = await browser.newPage();
-      console.log('Abriu Puppeteer')
+
       page.goto("https://www.workana.com/jobs?category=it-programming&has_few_bids=1&language=pt&subcategory=web-development%2Cwordpress-1%2Cothers-5"),{
         waitUntil: 'networkidle2'
     };
+    console.log('Abriu Puppeteer')
       await delay(10000)
 
       
