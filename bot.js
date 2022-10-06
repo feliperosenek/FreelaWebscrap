@@ -45,7 +45,7 @@ var pup = async () => {
       page.goto("https://www.workana.com/jobs?category=it-programming&has_few_bids=1&language=pt&subcategory=web-development%2Cwordpress-1%2Cothers-5"),{
         waitUntil: 'networkidle2'
     };
-    console.log('Abriu Puppeteer')
+
       await delay(10000)
 
       
@@ -68,7 +68,7 @@ var pup = async () => {
             if(dia <=9){dia="0"+dia}
             var hour = hora+":"+minuto; 
             
-            console.log("Procurando por novos jobs")
+            console.log(jobTimeHour)
      
       for (var i = 0; i < titleJob.length; i++) {       
         timeJobV = timeJob[i].title;
