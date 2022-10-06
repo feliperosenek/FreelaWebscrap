@@ -11,6 +11,7 @@ const { Telegraf } = require('telegraf');
 const bot = new Telegraf("5748468540:AAGiLUhCu2ESADda6qbk9_eW6kSGcTWSivM");
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 
+var verTitle = []
 
 var pup = async () => {
 
@@ -55,7 +56,7 @@ var pup = async () => {
       titleJob = dom.window.document.querySelectorAll(".h3.project-title");
       timeJob = dom.window.document.querySelectorAll("span[class='date']");
       descJob = dom.window.document.querySelectorAll(".html-desc.project-details");
-      linkJob = dom.window.document.querySelectorAll(".h3.project-title > a");
+      linkJob = dom.window.document.querySelectorAll(".h3.project-title > a"); 
 
       
             var timestamp = new Date();        
@@ -69,7 +70,10 @@ var pup = async () => {
             var hour = hora+":"+minuto; 
             
                 
-      for (var i = 0; i < titleJob.length; i++) {       
+      for (var i = 0; i < titleJob.length; i++) {    
+      
+        verTitle.push(titleJob[i]);   
+
         timeJobV = timeJob[i].title;
         
         timeJobV = timeJobV.split(" ");
@@ -89,7 +93,7 @@ var pup = async () => {
         calcM = 60 - parseInt(jobTimeM) + parseInt(calcH[1]);         
         }
 
-        if(parseInt(jobTimeDay) == parseInt(dia) && parseInt(calcM) < 15 ){
+        if(parseInt(jobTimeDay) == parseInt(dia) && !verTitle.includes(titleJob[i]) ){
           if(parseInt(calcM) < 0){calcM = 0;}
 
           var titleFilter = titleJob[i].textContent

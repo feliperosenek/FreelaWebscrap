@@ -65,22 +65,30 @@ const main = async () => {
   for (var i = 0; i < titleJob.length; i++) {
 
     timeJobV = timeJob[i];
-    timeJobV = timeJobV.split(" ");
+    timeJobV = timeJobV.split("de");
     jobTimeDay = timeJobV[0];
-    jobTimeHour = timeJobV[3];
+    jobTimeHour = timeJobV[2];
 
-    jobTimeHour = jobTimeHour.split(":");
+
+
+    jobTimeHour = jobTimeHour.split(" ");
+    jobTimeHour = jobTimeHour[2].split(":")
     jobTimeH = jobTimeHour[0] - 3;
-    jobTimeM = jobTimeHour[1]
+    jobTimeM = jobTimeHour[1]    
 
     if (jobTimeH <= 9) { jobTimeH = "0" + jobTimeH }
+
     calcH = hour.split(":");
     calcHour = jobTimeH - calcH[0]
     calcM = calcH[1] - jobTimeM;
 
+
+
     if (calcHour == "-1") {
       calcM = 60 - parseInt(jobTimeM) + parseInt(calcH[1]);
     }
+
+    console.log(calcM)
 
     if (parseInt(jobTimeDay) == parseInt(dia) && parseInt(calcM) < 15) {
       if (parseInt(calcM) < 0) { calcM = 0; }
@@ -94,8 +102,8 @@ const main = async () => {
 
       if (filter == true) {
         console.log("Novo JOB: " + titleJob[i])
-        bot.telegram.sendMessage(5760605862, url)
-        console.log(titleFilter)
+      //  bot.telegram.sendMessage(5760605862, url)
+        
       }
     }
 
