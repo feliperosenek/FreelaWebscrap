@@ -73,7 +73,7 @@ var pup = async () => {
       for (var i = 0; i < titleJob.length; i++) {       
         timeJobV = timeJob[i].title;
         console.log(timeJobV)
-        timeJobV = timeJobV.split("de");
+        timeJobV = timeJobV.split(",");
         jobTimeDay = timeJobV[0];
         jobTimeHour =  timeJobV[2];
        
