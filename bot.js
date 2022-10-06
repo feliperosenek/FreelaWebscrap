@@ -16,7 +16,7 @@ var pup = async () => {
 
   try {
 
-    //bot.telegram.sendMessage(5760605862,"Iniciando FreelaWebscrapper")
+    bot.telegram.sendMessage(5760605862,"Iniciando FreelaWebscrapper")
     console.log("Iniciando FreelaWebscrapper")
 
     let options = {
@@ -58,8 +58,7 @@ var pup = async () => {
       linkJob = dom.window.document.querySelectorAll(".h3.project-title > a");
 
       
-            var timestamp = new Date();
-            console.log(timestamp)
+            var timestamp = new Date();        
             var dia = timestamp.getDate();
             var hora = timestamp.getHours()
             var minuto = timestamp.getMinutes()
@@ -69,19 +68,15 @@ var pup = async () => {
             if(dia <=9){dia="0"+dia}
             var hour = hora+":"+minuto; 
             
-            console.log(hour)
-     
+                
       for (var i = 0; i < titleJob.length; i++) {       
         timeJobV = timeJob[i].title;
-        console.log(timeJobV)
         
-        timeJobV = timeJobV.split("de");
+        timeJobV = timeJobV.split(" ");
         jobTimeDay = timeJobV[0];
-        jobTimeHour =  timeJobV[2];
-       
-        jobTimeHour = jobTimeHour.split(" ")
+        jobTimeHour =  timeJobV[3];
 
-        jobTimeHour = jobTimeHour[2].split(":");
+        jobTimeHour = jobTimeHour.split(":");
         jobTimeH = jobTimeHour[0]-3;
         jobTimeM = jobTimeHour[1]
         
