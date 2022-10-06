@@ -27,7 +27,7 @@ var pup = async () => {
     let browser = await puppeteer.launch(options);
     var whitelist = []
 
-    console.log('Abriu Puppeteer')
+   
 
     var fs = require('fs');
     var array = fs.readFileSync('whitelist.txt').toString().split(",");
@@ -41,7 +41,7 @@ var pup = async () => {
 
       let page = await browser.newPage();
       let page2 = await browser.newPage();
-
+      console.log('Abriu Puppeteer')
       page.goto("https://www.workana.com/jobs?category=it-programming&has_few_bids=1&language=pt&subcategory=web-development%2Cwordpress-1%2Cothers-5"),{
         waitUntil: 'networkidle2'
     };
