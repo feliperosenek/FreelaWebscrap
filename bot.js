@@ -71,16 +71,13 @@ var pup = async () => {
             
      
       for (var i = 0; i < titleJob.length; i++) {       
-        timeJobV = timeJob[i].title;
-        console.log(timeJobV)
-        timeJobV = timeJobV.split(",");
+        timeJobV = timeJob[i];
+        timeJobV = timeJobV.split(" ");
         jobTimeDay = timeJobV[0];
-        jobTimeHour =  timeJobV[2];
-       
-        jobTimeHour = jobTimeHour.split(" ")
-
-        jobTimeHour = jobTimeHour[2].split(":");
-        jobTimeH = jobTimeHour[0]-3;
+        jobTimeHour = timeJobV[3];
+    
+        jobTimeHour = jobTimeHour.split(":");
+        jobTimeH = jobTimeHour[0] - 3;
         jobTimeM = jobTimeHour[1]
         
         if(jobTimeH <=9){jobTimeH="0"+jobTimeH}
