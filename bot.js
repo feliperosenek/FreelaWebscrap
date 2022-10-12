@@ -72,8 +72,6 @@ var pup = async () => {
                 
       for (var i = 0; i < titleJob.length; i++) {    
       
-        verTitle.push(titleJob[i]);   
-
         timeJobV = timeJob[i].title;
         
         timeJobV = timeJobV.split(" ");
@@ -93,7 +91,9 @@ var pup = async () => {
         calcM = 60 - parseInt(jobTimeM) + parseInt(calcH[1]);         
         }
 
-        if(parseInt(jobTimeDay) == parseInt(dia) && !verTitle.includes(titleJob[i]) ){
+       
+
+        if(parseInt(jobTimeDay) == parseInt(dia) && verTitle.includes(titleJob[i].textContent) == false){
           if(parseInt(calcM) < 0){calcM = 0;}
 
           var titleFilter = titleJob[i].textContent
@@ -105,10 +105,11 @@ var pup = async () => {
          
           if(filter == true){
             console.log("Novo JOB: " + titleJob[i].textContent)
-            bot.telegram.sendMessage(5760605862,url)
+           // bot.telegram.sendMessage(5760605862,url)
+            verTitle.push(titleJob[i].textContent); 
           }
          }
-      }
+      }       
       
       url = "";
       titleFilter = "";
@@ -126,8 +127,7 @@ var pup = async () => {
       
       page.close();
       page2.close();
-      await delay(900000)
-
+      await delay(900000)     
     }
 
   } catch (error) {
