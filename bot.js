@@ -89,9 +89,7 @@ var pup = async () => {
 
         if(calcHour == "-1"){
         calcM = 60 - parseInt(jobTimeM) + parseInt(calcH[1]);         
-        }
-
-       
+        }       
 
         if(parseInt(jobTimeDay) == parseInt(dia) && verTitle.includes(titleJob[i].textContent) == false){
           if(parseInt(calcM) < 0){calcM = 0;}
