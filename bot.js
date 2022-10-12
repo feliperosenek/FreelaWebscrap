@@ -3,12 +3,9 @@ const jsdom = require("jsdom");
 const {
   JSDOM
 } = jsdom;
-const https = require("https")
-const api = require('express');
-const fs = require('fs');
-
 const { Telegraf } = require('telegraf');
 const bot = new Telegraf("5748468540:AAGiLUhCu2ESADda6qbk9_eW6kSGcTWSivM");
+var fs = require('fs');
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 var verTitle = []
@@ -26,11 +23,8 @@ var pup = async () => {
     };
 
     let browser = await puppeteer.launch(options);
-    var whitelist = []
-
-   
-
-    var fs = require('fs');
+    var whitelist = [] 
+    
     var array = fs.readFileSync('whitelist.txt').toString().split(",");
     for(i in array) {
       whitelist.push(array[i])
@@ -45,10 +39,9 @@ var pup = async () => {
 
       page.goto("https://www.workana.com/jobs?category=it-programming&has_few_bids=1&language=pt&subcategory=web-development%2Cwordpress-1%2Cothers-5"),{
         waitUntil: 'networkidle2'
-    };
+      };
 
       await delay(10000)
-
       
       pageData = await page.evaluate(() => document.querySelector('*').outerHTML);
       dom = new JSDOM(pageData);
@@ -59,16 +52,15 @@ var pup = async () => {
       linkJob = dom.window.document.querySelectorAll(".h3.project-title > a"); 
 
       
-            var timestamp = new Date();        
-            var dia = timestamp.getDate();
-            var hora = timestamp.getHours()
-            var minuto = timestamp.getMinutes()
+      var timestamp = new Date();        
+      var dia = timestamp.getDate();
+      var hora = timestamp.getHours()
+      var minuto = timestamp.getMinutes()
 
-            if(hora <=9){hora="0"+hora}
-            if(minuto <=9){minuto="0"+minuto}
-            if(dia <=9){dia="0"+dia}
-            var hour = hora+":"+minuto; 
-            
+      if(hora <=9){hora="0"+hora}
+      if(minuto <=9){minuto="0"+minuto}
+      if(dia <=9){dia="0"+dia}
+      var hour = hora+":"+minuto;             
                 
       for (var i = 0; i < titleJob.length; i++) {    
       
