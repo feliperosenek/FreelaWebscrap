@@ -95,7 +95,7 @@ var pup = async () => {
          
           if(filter == true){
             console.log("Novo JOB: " + titleJob[i].textContent)
-           // bot.telegram.sendMessage(5760605862,url)
+            bot.telegram.sendMessage(5760605862,url)
             verTitle.push(titleJob[i].textContent); 
           }
          }
