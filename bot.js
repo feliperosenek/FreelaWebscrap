@@ -19,7 +19,8 @@ var pup = async () => {
 
     let options = {
       headless: true,
-      args: ['--no-sandbox']
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+       ignoreDefaultArgs: ['--disable-extensions'],
     };
 
     let browser = await puppeteer.launch(options);
@@ -37,7 +38,7 @@ var pup = async () => {
       let page = await browser.newPage();
       let page2 = await browser.newPage();
 
-      page.goto("https://www.workana.com/jobs?category=it-programming&has_few_bids=1&language=pt&subcategory=web-development%2Cwordpress-1%2Cothers-5"),{
+      page.goto("https://www.workana.com/jobs?category=it-programming&language=pt&subcategory=web-development%2Cothers-5"),{
         waitUntil: 'networkidle2'
       };
 

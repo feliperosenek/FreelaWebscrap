@@ -1,1 +1,1 @@
-robo,wordpress,bug,erro,otimização,sistema,php,ajustes,servidor,servidores,javascript,nodejs,html,css,hospedagem
+robo, robô, automation, automação, pipedream, pipe, bot, webscrap, webscrapper, raspagem, analise de dados, api, serveless
